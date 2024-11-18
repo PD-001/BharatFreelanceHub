@@ -1,0 +1,130 @@
+<!-- The HTML file is created by 19IT126-Axat Shah. All the CSS as well as JS files(except RecordRTC.js) have been also created by the author.-->
+<!-- This is the board page-->
+<!-- Created on: 21/02/2021-->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>On-Board</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="Board.css">
+
+    <link rel="icon" type="image/jpg" href="icons/On-board.jpg">
+
+ <!--   <script type="text/javascript">
+      window.onbeforeunload = function () {
+       return 'Changes you made may not be saved.';
+      };
+     </script> -->
+
+  </head>
+  <body>
+
+    <div id="sidepanelin" onclick="toggle_sidepanel()"><img src="board icons/Double Chevron Right.svg" width="100%" height="100%" style="max-height: 100%;"></div>
+
+    <div id="toolbox">
+
+      <div id="toolboxclose">
+        <div id="logoholder" onclick="toggle_sidepanel()"><img id="logo" src="../img/Images/IMG-20240826-WA0009.jpg"></div>
+        <div id="sidepanelout" onclick="toggle_sidepanel()"><img id="reverseimg" src="board icons/Double Chevron Right.svg" width="80%" height="80%"></div>
+      </div>
+      
+        <div id="toolscontainer">
+          <h5 style="font-size: 18px;">Tools</h5>
+          <button class="tools" id="pencil" onclick="start_pencil()"><img id="icon" src="board icons/Pen.svg"></button>
+          <button class="tools" id="eraser" onclick="start_eraser()"><img id="icon" style="width:21px;height:21px" src="board icons/Eraser.png"></button>
+          <button class="tools" onclick="document.body.requestFullscreen();full_screen=true"><img id="icon" src="board icons/Fullscreen.svg"></button>
+          <button class="tools" onclick="resize()"><img id="icon" src="board icons/Expand.svg"></button>
+        </div>
+    
+		    <div id="drawingtools">
+			     <h5 style="font-size: 18px;">Drawing Tools</h5>
+			     <button class="action" id="lines" onclick="start_line_drawing()"><span class="tooltiptext" style="bottom:115%;left: 0%;">Draw Line</span><img id="icon" src="board icons/diagonal-line.png"></button>
+			     <button class="action" id="circle" onClick="start_circle_drawing()"><span class="tooltiptext" style="bottom:115%;left:-100%;">Draw Circle</span><img id="icon" src="board icons/dry-clean.png"></button>
+  			   <button class="action" id="rectangle" onClick="start_rect_drawing()"><span class="tooltiptext" style="bottom:115%;right:0%;">Draw Rectangle</span><img id="icon" src="board icons/rectangular-shape-outline.png"></button>
+				   <button class="action" id="select" onClick="start_select_function()"><span class="tooltiptext" style="bottom:235%;left:0%;">Selection</span><img id="icon" src="board icons/selection.png"></button>
+				<button class="action" id="text" onClick="start_text_input()"><span class="tooltiptext" style="bottom:235%;left:-100%;">Insert Text</span><img id="icon" src="board icons/font.png"></button>
+		    </div>
+
+        <div id="toolproperties">
+          <h5 style="font-size: 18px;">Tool Properties</h5>
+          <div id="properties" style="width:85%">Stroke Size<input id="strokewidth"  value="5" type="range" min="0.5" max="50" placeholder="Example: 1"></input></div>
+          <div id="properties" style="width:85%">Pen Color<input id="strokecolor" value="#000000" type="color"></div>
+          <div id="properties2" style="width:0%">Board Color<input id="boardcolor" value="#ffffff" type="color"></div>
+        </div>
+
+        <div id="actions">
+          <h5 style="font-size: 18px;">Actions</h5>
+          <button class="action" id="action1" onclick="clear_page(cntx)"><span class="tooltiptext" style="bottom:115%;left: 0%;">Clear Page</span><img id="icon" src="board icons/Clear.svg"></button>
+          <button class="action" id="action4" onclick="download_img()" alt="Download as .jpg"><span class="tooltiptext" style="bottom:115%;left:-100%;">Dowload Image</span><img id="icon" src="board icons/Capture.svg"></button>
+          <button class="action" id="action7" onclick="to_pdf()"><span class="tooltiptext" style="bottom:115%;right:0%;">Dowload PDF</span><img id="icon" src="board icons/Download.svg"></button>
+          <button class="action" id="action2" onclick="start_recording()"><span class="tooltiptext" style="bottom:235%;left:0%;">Start Recording</span><img id="icon" src="board icons/Record.svg"></button>
+          <button class="action" id="action10" onclick="toggle_recording()" disabled="true"><span class="tooltiptext" style="bottom:235%;left:-100%;">Pause/Resume</span><img id="icon" src="board icons/Pause.svg"></i></button>
+          <button class="action" id="action3" onclick="stop_recording()"><span class="tooltiptext" style="bottom:235%;right:0%;">Stop Recording</span><img id="icon" src="board icons/Stop.svg"></button>
+          <button class="action" id="action8" onclick="undo()"><span class="tooltiptext" style="bottom:355%;left:0%;">Undo</span><img id="icon" src="board icons/Undo.svg"></button>
+          <button class="action" id="action9" onclick="redo()"><span class="tooltiptext" style="bottom:335%;left:-100%;">Redo</span><img id="icon" src="board icons/Redo.svg"></button>
+          <button class="action" id="action5" onclick="new_page()" style="width:95%">New Page</button>
+          <button class="action" id="action6" onclick="previous_page()" style="width:95%">Previous Page</button>
+        </div>
+
+        <div id="insertimage">
+		      <h5 style="font-size: 18px;">Insert Image</h5>
+		      <input id="furl" style="width:100%" type="file" onchange="previewImage(this);" accept="image/*">
+	      </div>
+
+        <div id="linkholder">
+          <h5 style="font-size: 18px;">Links</h5>
+          <button class="action" onclick="window.open('../freelance_client_both/both.html')" style="width:100%">Home</button>
+        </div>
+
+        </br>
+    </div>
+
+    <div id="pagecontainer">
+
+      <canvas id="canvas1">
+        <p>Your Browser is not supported by this web app. We regret the inconveniance caused.</p>
+        <p>Please try one of these supported browsers:</p>
+        <p><a href="www.mozilla.org">Mozilla Firefox</a></p>
+        <p><a href="www.google.com/chrome">Google Chrome</a></p>
+        <p><a href="#"></a></p>
+      </canvas>
+
+      <canvas id="canvas2" height="0" width="0"></canvas>
+
+      <canvas id="canvas3" height="0" width="0">
+        <p>Your Browser is not supported by this web app. We regret the inconveniance caused.</p>
+        <p>Please try one of these supported browsers:</p>
+        <p><a href="www.mozilla.org">Mozilla Firefox</a></p>
+        <p><a href="www.google.com/chrome">Google Chrome</a></p>
+        <p><a href="#"></a></p>
+      </canvas>
+      
+      <div id="image_input_menu">
+        <label style="width:48%;float:left">Width:<input type="number" class="input_image_dimensions" id="input_image_width" name="input_image_width" value="300"></label>
+        <label style="width:48%;float:left">Height:<input type="number" class="input_image_dimensions" id="input_image_height" name="input_image_height" value="200"></label>
+        <h5>Preview:</h5>
+        <img id="preview" width="300" height="200">
+        <button class="action" style="width:100%" onclick="imgavailable()">Add Image to Board</button>
+      </div>
+
+      <div class="notifier" id="notifier1">
+      </div>
+    </div>
+
+    
+    <script type="text/javascript" src="DrawingUtilities.js"></script>
+
+    <script type="text/javascript" src="ExtraUtilities.js"></script>
+
+    <script type="text/javascript" src="RecordRTC.min.js"></script>
+
+    <script type="text/javascript" src="ScreenCapture.js"></script>
+
+    <script type="text/javascript" src="PDF.min.js"></script>
+
+  </body>
+</html>
