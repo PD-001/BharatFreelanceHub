@@ -4,14 +4,6 @@ import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gsta
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
 // Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyChL4PXmR5RHmNnlVc6PiocbEsq3ygpD3E",
-  authDomain: "bharatfreelance-hub-538c2.firebaseapp.com",
-  projectId: "bharatfreelance-hub-538c2",
-  storageBucket: "bharatfreelance-hub-538c2.appspot.com",
-  messagingSenderId: "297970426246",
-  appId: "1:297970426246:web:fc266f818611f1c14a8c07"
-};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
